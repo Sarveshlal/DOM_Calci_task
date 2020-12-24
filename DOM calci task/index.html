@@ -55,6 +55,7 @@
         button.type = 'button'
         button.setAttribute('value','=')
         button.setAttribute('id','equals')
+        button.addEventListener('click',evaluate)
         button.classList.add('btn','btn-primary','btn-lg','btn-block')
         button.innerHTML = '='
         d3.appendChild(button)
@@ -65,17 +66,24 @@
             var button = document.createElement('button')
             button.type = 'button'
             button.setAttribute('value',value)
-            button.classList.add('btn','btn-primary','btn-lg','btn-block')
+            button.classList.add('btn','btn-primary','btn-lg','btn-block','input')
+            button.setAttribute('onclick','data(value)')
             button.setAttribute('id','input')
             button.innerHTML = value
             td.appendChild(button)
             return td
         }
-
-
         table.append(r1,r2,r3,r4,r5)
         div.append(h5,table)
         document.body.append(div)
+        function data(val){
+            document.getElementById('display').value+=val
+        }
+        function evaluate(){
+            let x = document.getElementById('display').value
+            let y = eval(x)
+            document.getElementById('display').value=y
+        }
         function clear(val){
             document.getElementById('display').value = ""
         }
