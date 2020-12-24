@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var div = document.createElement('div')
+        div.classList.add('container','p-4','bg-info','col-lg-4','col-sm','col-md')
+        var h5 = document.createElement('h5')
+        h5.innerHTML = 'CALCULATOR'
+        var table = document.createElement('table')
+        table.classList.add('table','col-lg-12','col-sm','col-md')
+        var r1 = document.createElement('tr')
+        var d1 = document.createElement('td')
+        d1.setAttribute('colspan','3')
+        d1.innerHTML = '<input type="text" id="display" class="form-control" readonly />'
+        var d2 = document.createElement('td')
+        var button = document.createElement('button')
+        button.type = 'button'
+        button.setAttribute('value','C')
+        button.classList.add('btn' ,'btn-secondary' ,'btn-block','col-sm','col-md')
+        button.innerHTML = 'C'
+        button.addEventListener('click',clear)
+        d2.append(button)
+        r1.append(d1,d2)
+        var r2 = document.createElement('tr')
+        var d1 = datatable('1')
+        var d2 = datatable('2')
+        var d3 = datatable('3')
+        var d4 = datatable('/')
+        r2.append(d1,d2,d3,d4)
+        var r3 = document.createElement('tr')
+        var d1 = datatable('4')
+        var d2 = datatable('5')
+        var d3 = datatable('6')
+        var d4 = datatable('*')
+        r3.append(d1,d2,d3,d4)
+        var r4 = document.createElement('tr')
+        var d1 = datatable('7')
+        var d2 = datatable('8')
+        var d3 = datatable('9')
+        var d4 = datatable('-')
+        r4.append(d1,d2,d3,d4)
+        var r5 = document.createElement('tr')
+        var d1 = datatable('.')
+        var d2 = datatable('0')
+        var d3 = document.createElement('td')
+        var button = document.createElement('button')
+        button.type = 'button'
+        button.setAttribute('value','=')
+        button.setAttribute('id','equals')
+        button.classList.add('btn','btn-primary','btn-lg','btn-block')
+        button.innerHTML = '='
+        d3.appendChild(button)
+        var d4 = datatable('+')
+        r5.append(d1,d2,d3,d4)
+        function datatable(value){
+            var td = document.createElement('td')
+            var button = document.createElement('button')
+            button.type = 'button'
+            button.setAttribute('value',value)
+            button.classList.add('btn','btn-primary','btn-lg','btn-block')
+            button.setAttribute('id','input')
+            button.innerHTML = value
+            td.appendChild(button)
+            return td
+        }
+
+
+        table.append(r1,r2,r3,r4,r5)
+        div.append(h5,table)
+        document.body.append(div)
+        function clear(val){
+            document.getElementById('display').value = ""
+        }
+    </script>
+    <script src="calci_script.js"></script>
+</body>
+</html>
